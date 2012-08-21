@@ -9,6 +9,14 @@ In addition to the Haskell infastructure for Pandoc you will need:
 * inkscape
 * ghostscript
 
+Installation
+------------
+
+```bash
+$ cd cats
+$ cabal install
+```
+
 Usage
 -----
 
