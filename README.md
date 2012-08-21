@@ -46,7 +46,7 @@ Usage
 
 **Into this:**
 
-![Illustration](https://github.com/sdiehl/py-control-flow/raw/master/misc/screenshot.png)
+![Illustration](https://github.com/sdiehl/cats/raw/master/misc/screenshot.png)
 
 You can either invoke from the commandline.
 
