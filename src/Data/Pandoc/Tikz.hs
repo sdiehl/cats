@@ -16,13 +16,13 @@ import Text.Pandoc
 import Data.ByteString.Lazy.Char8 (pack)
 import Data.Digest.Pure.MD5 (md5)
 
-tikz_class = ["commute"]
-tex_engine = "pdflatex"
+tikzClass = ["commute"]
+texEngine = "pdflatex"
 {-tex_engine = "lualatex"-}
 --tex_engine = "xelatex"
 
-tikz_cmd     = ["--output-directory=_cache" , "--jobname="]
-inkscape_cmd = ["--export-plain-svg" ]
+tikzCmd     = ["--output-directory=_cache" , "--jobname="]
+inkscapeCmd = ["--export-plain-svg" ]
 output = "images/"
 
 preamble  = readFile "preamble.tex"
@@ -41,7 +41,7 @@ svgify file = do
       ExitFailure _ -> do
           putStrLn "Inkscape Failed"
           return $ imageBlock "invalid tikz"
-      ExitSuccess ->  do
+      ExitSuccess -> 
           -- If you want to inline the svg
           {-readFile "output.svg"-}
           return $ imageBlock output
@@ -50,16 +50,16 @@ svgify file = do
 
 texcompile :: String -> IO String
 texcompile tex =  do
-    (err, outs, _) <- readProcessWithExitCode tex_engine [ "-output-directory", output, "-jobname", jobname] tex
+    (err, outs, _) <- readProcessWithExitCode texEngine [ "-output-directory", output, "-jobname", jobname] tex
     case err of
       ExitFailure _ -> do
           putStrLn "LaTeX Failed"
           hPutStr stderr outs 
           return ""
-      ExitSuccess ->  do
+      ExitSuccess ->
           return $ ljoin [output, replaceExtension jobname ".pdf"]
       where 
-          jobname = show $ md5 $ pack $ tex
+          jobname = show $ md5 $ pack tex
 
 mash :: String -> IO String
 mash contents = do
