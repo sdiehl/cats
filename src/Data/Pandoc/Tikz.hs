@@ -32,7 +32,7 @@ ljoin = makeRelative "." . join
 
 
 imageBlock :: FilePath -> Block
-imageBlock fname = Plain [Image [] (fname, "")]
+imageBlock fname = Plain [Image [] ("/" ++ fname, "")]
 
 svgify :: FilePath -> IO Block
 svgify file = do
@@ -59,7 +59,7 @@ texcompile tex =  do
       ExitSuccess ->
           return $ ljoin [output, replaceExtension jobname ".pdf"]
       where 
-          jobname = show $ md5 $ pack tex
+          jobname = show . md5 $ pack tex
 
 mash :: String -> IO String
 mash contents = do
@@ -71,6 +71,6 @@ tikzPipeline :: String -> IO Block
 tikzPipeline = mash >=> texcompile >=> svgify
 
 doTikz :: Block -> IO Block
-doTikz (CodeBlock (id, tikz_class, namevals) contents) = tikzPipeline contents
+doTikz (CodeBlock (id, ["commute"], namevals) contents) = tikzPipeline contents
 doTikz x = return x
 
