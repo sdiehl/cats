@@ -41,7 +41,7 @@ svgify file = do
       ExitFailure _ -> do
           putStrLn "Inkscape Failed"
           return $ imageBlock "invalid tikz"
-      ExitSuccess -> 
+      ExitSuccess ->
           -- If you want to inline the svg
           {-readFile "output.svg"-}
           return $ imageBlock output
@@ -54,11 +54,11 @@ texcompile tex =  do
     case err of
       ExitFailure _ -> do
           putStrLn "LaTeX Failed"
-          hPutStr stderr outs 
+          hPutStr stderr outs
           return ""
       ExitSuccess ->
           return $ ljoin [output, replaceExtension jobname ".pdf"]
-      where 
+      where
           jobname = show . md5 $ pack tex
 
 mash :: String -> IO String
@@ -73,4 +73,3 @@ tikzPipeline = mash >=> texcompile >=> svgify
 doTikz :: Block -> IO Block
 doTikz (CodeBlock (id, ["commute"], namevals) contents) = tikzPipeline contents
 doTikz x = return x
-
