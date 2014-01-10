@@ -32,7 +32,7 @@ ljoin = makeRelative "." . join
 
 
 imageBlock :: FilePath -> Block
-imageBlock fname = Plain [Image [] ("/" ++ fname, "")]
+imageBlock fname = Para [Image [] (fname, "")]
 
 svgify :: FilePath -> IO Block
 svgify file = do
