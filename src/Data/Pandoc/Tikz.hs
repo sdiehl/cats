@@ -65,7 +65,7 @@ mash :: String -> IO String
 mash contents = do
     x <- preamble
     y <- postamble
-    return $ concat [x, contents, y]
+    return $ concat [x, "\n", contents, "\n", y]
 
 tikzPipeline :: String -> IO Block
 tikzPipeline = mash >=> texcompile >=> svgify
