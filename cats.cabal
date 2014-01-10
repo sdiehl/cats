@@ -25,10 +25,11 @@ Source-Repository head
 Library
     Hs-Source-Dirs:  src
     Build-Depends:  
-        pandoc     >= 1.9.3 && < 1.10,
-        bytestring >= 0.9   && < 0.10,
+        data-default,            
+        pandoc     >= 1.9.3 && < 1.13,
+        bytestring >= 0.9   && < 0.11,
         filepath   >= 1.0   && < 1.4,
-        unix       >= 2.4   && < 2.6,
+        unix       >= 2.4   && < 2.7,
         process    >= 1.0   && < 1.2,
         pureMD5    >= 2.1,
         base       >= 4 && < 5

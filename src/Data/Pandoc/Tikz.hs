@@ -32,7 +32,7 @@ ljoin = makeRelative "." . join
 
 
 imageBlock :: FilePath -> Block
-imageBlock fname = Plain [Image [] ("/" ++ fname, "")]
+imageBlock fname = Para [Image [] (fname, "")]
 
 svgify :: FilePath -> IO Block
 svgify file = do
@@ -65,7 +65,7 @@ mash :: String -> IO String
 mash contents = do
     x <- preamble
     y <- postamble
-    return $ concat [x, contents, y]
+    return $ concat [x, "\n", contents, "\n", y]
 
 tikzPipeline :: String -> IO Block
 tikzPipeline = mash >=> texcompile >=> svgify

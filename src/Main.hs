@@ -1,12 +1,13 @@
+import Data.Default
+import Data.Pandoc.Tikz
 import System.IO
 import Text.Pandoc
-import Data.Pandoc.Tikz
 
 readDoc :: String -> Pandoc
-readDoc = readMarkdown defaultParserState
+readDoc = readMarkdown def
 
 writeDoc :: Pandoc -> String
-writeDoc = writeMarkdown defaultWriterOptions
+writeDoc = writeMarkdown def
 
 main :: IO ()
 main = getContents >>= bottomUpM doTikz . readDoc >>= putStrLn . writeDoc
