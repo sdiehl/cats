@@ -1,4 +1,4 @@
-name:                pandoc-cats
+name:                cats
 version:             0.1.0.1
 synopsis:            Commutative via TikZ for Pandoc
 homepage:            https://github.com/sdiehl/cats
@@ -28,10 +28,10 @@ Library
     Build-Depends:  
         base       >= 4 && < 5,
         pandoc     >= 1.9.3,
-        bytestring >= 0.9   && < 0.11,
-        filepath   >= 1.0   && < 1.4,
-        unix       >= 2.4   && < 2.7,
-        process    >= 1.0   && < 1.2,
+        bytestring >= 0.9,
+        filepath   >= 1.0,
+        unix       >= 2.4,
+        process    >= 1.0,
         pureMD5    >= 2.1,
         data-default
 
@@ -43,10 +43,10 @@ Executable cats
   Build-Depends:  
       base       >= 4 && < 5,
       pandoc     >= 1.9.3,
-      bytestring >= 0.9   && < 0.11,
-      filepath   >= 1.0   && < 1.4,
-      unix       >= 2.4   && < 2.7,
-      process    >= 1.0   && < 1.2,
+      bytestring >= 0.9,
+      filepath   >= 1.0,
+      unix       >= 2.4,
+      process    >= 1.0,
       pureMD5    >= 2.1,
       optparse-applicative >= 0.7,
       data-default
