@@ -1,15 +1,17 @@
+import Control.Exception(throw)
 import Data.Default
 import Data.Pandoc.Tikz
 import System.IO
 import Text.Pandoc
 import Options.Applicative
+import Data.Monoid
 
 data Options = Options
   { input :: String }
   deriving Show
 
 readDoc :: String -> Pandoc
-readDoc = readMarkdown def
+readDoc = either throw id . readMarkdown def
 
 writeDoc :: Pandoc -> String
 writeDoc = writeMarkdown def
